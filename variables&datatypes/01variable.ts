@@ -106,18 +106,36 @@ person = ["Bob", 25]; // No error, valid reassignment
 // Enum
 // Enums are a way to define named constants.
 // Enums are useful when yo have a fixed set of related values
-enum Color {
-	Red = 1,
-	Green,
-	Blue,
+// Numeric enums are the most common and straightforward. Values are auto-incremented starting from 0 (or a custom starting point).
+enum Day {
+	Monday = 1,
+	Tuesday,
+	Wednesday,
+	Thursday,
+	Friday,
+	Saturday,
+	Sunday,
 }
-let cost: Color = Color.Red;
-console.log(`Cost is ${cost}`);
-cost = Color.Green;
-console.log(`Cost is ${cost}`);
-cost = Color.Blue;
-console.log(`Cost is ${cost}`);
-// c = 5; // Error: Type '5' is not assignable to type 'Color
+console.log(Day.Monday); // Output: 1
+console.log(Day.Sunday); // Output: 7
+// String enums explicitly assign string values to each member.
+enum Color {
+	Red = "RED",
+	Green = "GREEN",
+	Blue = "BLUE",
+}
+console.log(Color.Red); // Output: "RED"
+console.log(Color.Green); // Output: "GREEN"
+console.log(Color.Blue); // Output: "BLUE"
+// Technically, TypeScript allows mixing strings and numbers in enums, but it’s considered a bad practice because it can lead to confusion.
+// Avoid mixing types in enums to maintain clarity and consistency.\
+enum Color {
+	Yellow = 1, // Numeric
+	Gray = "23", // String
+}
+
+console.log(Color.Yellow); // Output: 1
+console.log(Color.Gray); // Output: "23"
 
 // Unknown
 // The unknown type is safer than any.
