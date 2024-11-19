@@ -47,7 +47,12 @@ console.log(num);
 // num = 3; // Type 'number' is not assignable to type 'number[]'
 // Another syntax of creating arrays
 // An array of only string values
-let friends = ["Joyce", "Flav", "Claire", "Frank"];
+let friends = [
+    "Joyce",
+    "Flav",
+    "Claire",
+    "Frank",
+];
 console.log(friends);
 friends.push("Mark");
 console.log(friends);
@@ -56,7 +61,11 @@ console.log(friends);
 let bool = [true, false];
 console.log(bool);
 // Setting an array to hold more than one datatype
-let myArray = [1, "GomyCode", true];
+let myArray = [
+    1,
+    "GomyCode",
+    true,
+];
 console.log(`myArray: ${myArray}`);
 console.log(`type of myArray: ${typeof myArray[0]}`);
 console.log(`type of myArray: ${typeof myArray[1]}`);
@@ -88,22 +97,22 @@ person = ["Bob", 25]; // No error, valid reassignment
 // Numeric enums are the most common and straightforward. Values are auto-incremented starting from 0 (or a custom starting point).
 var Day;
 (function (Day) {
-	Day[(Day["Monday"] = 1)] = "Monday";
-	Day[(Day["Tuesday"] = 2)] = "Tuesday";
-	Day[(Day["Wednesday"] = 3)] = "Wednesday";
-	Day[(Day["Thursday"] = 4)] = "Thursday";
-	Day[(Day["Friday"] = 5)] = "Friday";
-	Day[(Day["Saturday"] = 6)] = "Saturday";
-	Day[(Day["Sunday"] = 7)] = "Sunday";
+    Day[Day["Monday"] = 1] = "Monday";
+    Day[Day["Tuesday"] = 2] = "Tuesday";
+    Day[Day["Wednesday"] = 3] = "Wednesday";
+    Day[Day["Thursday"] = 4] = "Thursday";
+    Day[Day["Friday"] = 5] = "Friday";
+    Day[Day["Saturday"] = 6] = "Saturday";
+    Day[Day["Sunday"] = 7] = "Sunday";
 })(Day || (Day = {}));
 console.log(Day.Monday); // Output: 1
 console.log(Day.Sunday); // Output: 7
 // String enums explicitly assign string values to each member.
 var Color;
 (function (Color) {
-	Color["Red"] = "RED";
-	Color["Green"] = "GREEN";
-	Color["Blue"] = "BLUE";
+    Color["Red"] = "RED";
+    Color["Green"] = "GREEN";
+    Color["Blue"] = "BLUE";
 })(Color || (Color = {}));
 console.log(Color.Red); // Output: "RED"
 console.log(Color.Green); // Output: "GREEN"
@@ -111,8 +120,8 @@ console.log(Color.Blue); // Output: "BLUE"
 // Technically, TypeScript allows mixing strings and numbers in enums, but it’s considered a bad practice because it can lead to confusion.
 // Avoid mixing types in enums to maintain clarity and consistency.\
 (function (Color) {
-	Color[(Color["Yellow"] = 1)] = "Yellow";
-	Color["Gray"] = "23";
+    Color[Color["Yellow"] = 1] = "Yellow";
+    Color["Gray"] = "23";
 })(Color || (Color = {}));
 console.log(Color.Yellow); // Output: 1
 console.log(Color.Gray); // Output: "23"
@@ -122,7 +131,7 @@ let value = "Hello"; // No error, valid assignment
 // You can assign anything to an unknown variable, but you must check its type before performing operations on it.
 // value.toUpperCase(); // Error: Object is of type 'unknown'
 if (typeof value === "string") {
-	console.log(value.toUpperCase()); // No error after type check
+    console.log(value.toUpperCase()); // No error after type check
 }
 // Null and Undefined
 // null represents the intentional absence of any object value.
@@ -138,37 +147,39 @@ a = 5; // No error, valid number assignment
 // The void type is used for functions that do not return a value.
 // It is typically used as the return type for functions that do not return anything.
 function logMessage(message) {
-	console.log(message); // No error, function does not return anything
+    console.log(message); // No error, function does not return anything
 }
 let result = logMessage("Hello!"); // No error, result is undefined
 console.log(`result is ${result}`);
 //  If you try to return something from a function that’s supposed to return void, TypeScript will give you an error.
-function logMessage(message) {
-	console.log(message);
-	// return "Hello";  // Error: Type 'string' is not assignable to type 'void'
+function logMessage2(message) {
+    console.log(message);
+    // return "Hello";  // Error: Type 'string' is not assignable to type 'void'
 }
 // Never
 // The never type represents values that never occur. It is used for functions that never return (e.g., they throw an error or enter an infinite loop).
 function throwError(message) {
-	throw new Error(message); // No error, function never returns a value
+    throw new Error(message); // No error, function never returns a value
 }
 // You cannot assign anything to a variable of type never, because it is used to represent the absence of a return type.
 function infiniteLoop() {
-	while (true) {
-		console.log("Running forever...");
-	}
+    while (true) {
+        console.log("Running forever...");
+    }
 }
 //  shape can only be "circle" or "square". If you try to access any other type of shape, TypeScript knows it’s impossible.
 function getArea(shape) {
-	if (shape.kind === "circle") {
-		return Math.PI * shape.radius * shape.radius;
-	} else if (shape.kind === "square") {
-		return shape.side * shape.side;
-	} else {
-		// TypeScript knows this block is unreachable.
-		const _exhaustiveCheck = shape; // Error if new types are added to Shape
-		return _exhaustiveCheck;
-	}
+    if (shape.kind === "circle") {
+        return Math.PI * shape.radius * shape.radius;
+    }
+    else if (shape.kind === "square") {
+        return shape.side * shape.side;
+    }
+    else {
+        // TypeScript knows this block is unreachable.
+        const _exhaustiveCheck = shape; // Error if new types are added to Shape
+        return _exhaustiveCheck;
+    }
 }
 // Object
 // In TypeScript, the object type is a broad type that represents any non-primitive value. This includes:
