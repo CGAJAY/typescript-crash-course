@@ -53,9 +53,19 @@ const car = {
     engineType: "V8",
 };
 class Person2 {
+    constructor(arg1) {
+        this.myName = arg1;
+    }
     greet() {
-        return "Hello!";
+        return `Hello ${this.myName}`;
     }
 }
-const student = new Person2();
-console.log(student.greet()); // "Hello!"
+const student = new Person2("Frank");
+console.log(student.greet()); // "Hello Frank"
+let nokia = {
+    model: "a12",
+    price: 400,
+    brightness: "1000 nits",
+    battery: "5000 Mah",
+};
+console.log(nokia);

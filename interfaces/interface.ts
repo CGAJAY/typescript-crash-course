@@ -79,7 +79,7 @@ let a1: Mobile = {
 };
 
 a1.price = 2000; // Allowed
-// a1.specs = "64gb ram"; // ❌ Error: Cannot assign to 'specs' because it is a read-only property
+// a1.specs = "64gb ram"; // ❌ Error: Cannot re-assign to 'specs' because it is a read-only property
 
 // INDEX SIGNATURES
 // Defines dynamic property keys of a certain type
@@ -166,14 +166,39 @@ const car: Vehicle = {
 // IMPLEMENTING INTERFACES IN CLASSES
 // Classes can implement interfaces to enforce structure.
 interface Greeter {
+	myName: string;
 	greet(): string;
 }
 
 class Person2 implements Greeter {
+	myName: string;
+	constructor(arg1: string) {
+		this.myName = arg1;
+	}
 	greet() {
-		return "Hello!";
+		return `Hello ${this.myName}`;
 	}
 }
 
-const student = new Person2();
-console.log(student.greet()); // "Hello!"
+const student = new Person2("Frank");
+console.log(student.greet()); // "Hello Frank"
+
+// DECLARATION MERGING
+interface mobileSpecs {
+	brightness: string;
+}
+
+interface mobileSpecs {
+	model: string;
+	price: number;
+	battery: string;
+}
+
+let nokia: mobileSpecs = {
+	model: "a12",
+	price: 400,
+	brightness: "1000 nits",
+	battery: "5000 Mah",
+};
+
+console.log(nokia);
