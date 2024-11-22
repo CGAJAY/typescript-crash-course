@@ -24,6 +24,24 @@ class Theperson {
 // Create an object (instance) of the class
 const Person20 = new Theperson("Frank", 18);
 Person20.greetings();
+// INHERITANCE
+// Classes can extend other classes to inherit their properties and methods
+// Subclasses can add or override functionality while still leveraging the parent class implementation
+class Animal {
+    constructor(name) {
+        this.name = name;
+    }
+    speak() {
+        console.log(`${this.name} makes a sound`);
+    }
+}
+class Dog extends Animal {
+    speak() {
+        console.log(`${this.name} barks.`);
+    }
+}
+const dog = new Dog("Buddy");
+dog.speak(); // Buddy barks
 // ACCESS MODIFIERS IN TYPESCRIPT
 // They determine the visibility & accessibility of properties & methods within a class
 // 1. Public (default)
@@ -76,5 +94,5 @@ class DerivedExample extends ProtectedExample {
 let obj4 = new DerivedExample("sensitive Data");
 // console.log(obj4.data); // Property 'data' is protected
 obj4.display(); // Data: sensitive Data
-console.log(obj4.display());
+console.log(obj4.display()); // Accesible from anywhere
 // The data property is accessible inside DerivedExample but not outside it
