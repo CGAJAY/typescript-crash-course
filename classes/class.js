@@ -96,3 +96,54 @@ let obj4 = new DerivedExample("sensitive Data");
 obj4.display(); // Data: sensitive Data
 console.log(obj4.display()); // Accesible from anywhere
 // The data property is accessible inside DerivedExample but not outside it
+// STATIC MEMBERS
+// Properties & methods that belong to the class itself rather than an instance of the class
+// They can only be accessed using the class name not an instance of the class
+class Counter {
+    constructor(bol) {
+        this.isCounting = bol;
+    }
+    static increment() {
+        console.log(++this.count);
+    }
+}
+Counter.count = 0;
+let voters = new Counter(true);
+// console.log(voters.count); // can't be accessed through an instance
+// console.log(voters.increment); // can't be accessed through an instance
+console.log(voters.isCounting); // true
+console.log(Counter.count); // 0
+Counter.increment(); // 1
+// GETTERS & SETTERS
+// Special methods in a class that allow control over access to an object properties
+// They provide a way to add logic when retrieving or updating a property, rather than directly accessing or assigning its value.
+class Persona {
+    constructor(name) {
+        this._name = name;
+    }
+    // Getter
+    get name() {
+        return this._name;
+    }
+    // Setter
+    set name(value) {
+        if (value.length < 3) {
+            throw new Error("Name must be at least 3 characters long.");
+        }
+        this._name = value;
+    }
+}
+const person78 = new Persona("Alice");
+console.log(person78.name); // Getter is called, Output: Alice
+person78.name = "Bob"; // Setter is called
+console.log(person78.name); // Output: Bob
+class Cat {
+    constructor(name) {
+        this.name = name;
+    }
+    makeSound() {
+        console.log("Meow! Meow!");
+    }
+}
+const cat1 = new Cat("Atara");
+cat1.makeSound(); // Meow! Meow!

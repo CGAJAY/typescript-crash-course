@@ -125,3 +125,87 @@ obj4.display(); // Data: sensitive Data
 console.log(obj4.display()); // Accesible from anywhere
 
 // The data property is accessible inside DerivedExample but not outside it
+
+// STATIC MEMBERS
+// Properties & methods that belong to the class itself rather than an instance of the class
+// They can only be accessed using the class name not an instance of the class
+
+class Counter {
+	static count: number = 0;
+	isCounting: boolean;
+	constructor(bol: boolean) {
+		this.isCounting = bol;
+	}
+	static increment(): void {
+		console.log(++this.count);
+	}
+}
+
+let voters = new Counter(true);
+// console.log(voters.count); // can't be accessed through an instance
+// console.log(voters.increment); // can't be accessed through an instance
+console.log(voters.isCounting); // true
+console.log(Counter.count); // 0
+Counter.increment(); // 1
+
+// GETTERS & SETTERS
+// Special methods in a class that allow control over access to an object properties
+// They provide a way to add logic when retrieving or updating a property, rather than directly accessing or assigning its value.
+
+class Persona {
+	private _name: string;
+
+	constructor(name: string) {
+		this._name = name;
+	}
+
+	// Getter
+	get name(): string {
+		return this._name;
+	}
+
+	// Setter
+	set name(value: string) {
+		if (value.length < 3) {
+			throw new Error(
+				"Name must be at least 3 characters long."
+			);
+		}
+		this._name = value;
+	}
+}
+
+const person78 = new Persona("Alice");
+console.log(person78.name); // Getter is called, Output: Alice
+
+person78.name = "Bob"; // Setter is called
+console.log(person78.name); // Output: Bob
+// person78.name = "Al"; // Error: Name must be at least 3 characters long.
+
+// The private property is often prefixed with _ (e.g., _name) to distinguish it from the getter/setter.
+// This is not mandatory but is a common practice.
+// getter method Acts like a property when accessed, Use it to return the value of a property.
+// setter method Acts like a property when assigning a value, Use it to validate or modify the value before setting it.
+
+// INTERFACES IN CLASSES
+// An interface is a structure that defines the shape of an object
+// When used in classes, they specify what properties & methods a class must have
+// If a class implements an interface, it must fulfill all the requirements defined by the interface
+
+interface MyAnimal {
+	name: string;
+	makeSound(): void;
+}
+
+class Cat implements MyAnimal {
+	name: string;
+	constructor(name: string) {
+		this.name = name;
+	}
+	makeSound(): void {
+		console.log("Meow! Meow!");
+	}
+}
+
+const cat1 = new Cat("Atara");
+cat1.makeSound(); // Meow! Meow!
